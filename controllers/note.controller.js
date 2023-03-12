@@ -49,3 +49,17 @@ exports.shareNote = async (req, res) => {
 
 	return res.status(200).send({ success: true, message: "Shared!" });
 };
+
+exports.deleteNote = async (req, res) => {
+	const { id } = req.body;
+
+	const note = await NOTE.findById(id);
+
+	if (!note) {
+		throw {
+			code: 404,
+			success: false,
+			message: "Note not found!",
+		};
+	}
+};
